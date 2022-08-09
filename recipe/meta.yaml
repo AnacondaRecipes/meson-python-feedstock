@@ -50,6 +50,7 @@ test:
     - git
     - gitpython
     - patchelf  # [linux]
+    - pkgconfig # [linux]
     - pip
     - pytest
     - pytest-mock
