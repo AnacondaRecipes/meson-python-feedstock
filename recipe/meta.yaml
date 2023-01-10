@@ -13,7 +13,7 @@ source:
 
 build:
   skip: True # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
   number: 1
 
 requirements:
@@ -25,6 +25,7 @@ requirements:
     - ninja
     - pyproject-metadata >=0.5.0
     - pip
+    - wheel
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
