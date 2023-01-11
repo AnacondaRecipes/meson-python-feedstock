@@ -1,19 +1,20 @@
 {% set version = "0.7.0" %}
+{% set name = "meson-python" %}
 
 package:
-  name: meson-python
+  name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://github.com/FFY00/meson-python/archive/refs/tags/{{ version }}.tar.gz
-  sha256: 63516ad7ada4721c3c23d7fce396d5aa9d5248b134077d5fd782c40ca803c5ee
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
+  sha256: 9fcfa350f44ca80dd4f5f9c3d251725434acf9a07d9618f382e6cc4629dcbe84
   patches:
     - patches/0001-fix-overdependency-on-ninja.patch
 
 build:
   skip: True # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv
-  number: 0
+  script: {{ PYTHON }} -m pip install . -vv --no-deps
+  number: 1
 
 requirements:
   build:
@@ -24,6 +25,7 @@ requirements:
     - ninja
     - pyproject-metadata >=0.5.0
     - pip
+    - wheel
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
