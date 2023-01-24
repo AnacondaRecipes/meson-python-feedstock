@@ -44,17 +44,19 @@ test:
     - mesonpy
   commands:
     - pip check
+    - rm tests/test_pep518.py
     - pytest tests -vv -k "not test_contents_unstaged"
   source_files:
     - tests/
+    - docs/
   requires:
     - {{ compiler('c') }}
+    - cython
     - git
     - gitpython
     - patchelf  # [linux]
-    - pkgconfig # [linux]
     - pip
-    - pytest
+    - pytest >=6.0
     - pytest-mock
 
 about:
