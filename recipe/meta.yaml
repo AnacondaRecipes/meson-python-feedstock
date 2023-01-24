@@ -18,12 +18,12 @@ requirements:
   host:
     - meson 0.64.1
     - ninja
-    - pyproject-metadata >=0.5.0
+    - pyproject-metadata 0.6.1
     - pip
     - wheel
     - python
-    - tomli >=1.0.0
-    - typing-extensions >=3.7.4 # [py<38]
+    - tomli 1.2.2
+    - typing-extensions 3.7.4.2 # [py<38]
   run:
     - colorama # [win]
     - meson >=0.63.3
