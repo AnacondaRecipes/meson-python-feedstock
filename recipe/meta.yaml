@@ -31,13 +31,12 @@ requirements:
     - typing-extensions >=3.7.4 # [py<38]
   run:
     - colorama # [win]
-    - meson >=0.60.0
+    - meson >=0.63.3
     - ninja
     - pyproject-metadata >=0.5.0
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
-    - wheel >=0.36.0
 
 test:
   imports:
