@@ -1,4 +1,4 @@
-{% set version = "0.7.0" %}
+{% set version = "0.11.0" %}
 {% set name = "meson-python" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 9fcfa350f44ca80dd4f5f9c3d251725434acf9a07d9618f382e6cc4629dcbe84
+  sha256: 110258837c2ffe762f5f855c7ea5385f1edd44074e93a0f317ffefc7aab42b09
   patches:
     - patches/0001-fix-overdependency-on-ninja.patch
 
