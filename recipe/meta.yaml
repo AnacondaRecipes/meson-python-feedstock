@@ -12,7 +12,7 @@ source:
     - patches/0001-fix-overdependency-on-ninja.patch
 
 build:
-  skip: True # [py<37]
+  skip: True # [py<36]
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   number: 0
 
@@ -21,7 +21,7 @@ requirements:
     - patch     # [not win]
     - m2-patch  # [win]
   host:
-    - meson >=0.62.0
+    - meson 0.64.1
     - ninja
     - pyproject-metadata >=0.5.0
     - pip
