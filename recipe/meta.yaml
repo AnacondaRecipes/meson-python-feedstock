@@ -26,7 +26,7 @@ requirements:
   run:
     - colorama # [win]
     - meson >=0.63.3
-    - pyproject-metadata >=0.5.0
+    - pyproject-metadata >=0.6.1
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
