@@ -52,8 +52,8 @@ test:
     - pytest-mock
 
 about:
-  home: https://github.com/FFY00/meson-python
-  dev_url: https://github.com/FFY00/meson-python
+  home: https://github.com/mesonbuild/meson-python
+  dev_url: https://github.com/mesonbuild/meson-python
   doc_url: https://meson-python.readthedocs.io/
   summary: Meson Python build backend (PEP 517)
   description: |
