@@ -1,4 +1,4 @@
-{% set version = "0.11.0" %}
+{% set version = "0.12.0" %}
 {% set name = "meson-python" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 110258837c2ffe762f5f855c7ea5385f1edd44074e93a0f317ffefc7aab42b09
+  sha256: 8cb159a8093a2e73cfa897f8092ec93b74e3842f94dff7fde381c6fe0e0b064d
 
 build:
   skip: True # [py<36]
