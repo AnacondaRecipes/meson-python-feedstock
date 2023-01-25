@@ -10,7 +10,7 @@ source:
   sha256: 8cb159a8093a2e73cfa897f8092ec93b74e3842f94dff7fde381c6fe0e0b064d
 
 build:
-  skip: True # [py<36]
+  skip: True # [py<37]
   script: {{ PYTHON }} -m pip install . -vv --no-deps
   number: 0
 
@@ -22,14 +22,14 @@ requirements:
     - wheel
     - python
     - tomli 1.2.2
-    - typing-extensions 3.7.4.2 # [py<38]
+    - typing-extensions 3.7.4.2 # [py<310]
   run:
     - colorama # [win]
     - meson >=0.63.3
     - pyproject-metadata >=0.6.1
     - python
     - tomli >=1.0.0
-    - typing-extensions >=3.7.4 # [py<38]
+    - typing-extensions >=3.7.4 # [py<310]
 
 test:
   imports:
