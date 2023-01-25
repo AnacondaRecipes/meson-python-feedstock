@@ -22,14 +22,14 @@ requirements:
     - wheel
     - python
     - tomli 1.2.2
-    - typing-extensions 3.7.4.2 # [py<310]
+    - typing-extensions 3.10.0.0  # [py<310]
   run:
     - colorama # [win]
     - meson >=0.63.3
     - pyproject-metadata >=0.6.1
     - python
     - tomli >=1.0.0
-    - typing-extensions >=3.7.4 # [py<310]
+    - typing-extensions >=3.10.0.0  # [py<310]
 
 test:
   imports:
