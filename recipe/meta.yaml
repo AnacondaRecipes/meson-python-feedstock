@@ -36,8 +36,8 @@ test:
     - mesonpy
   commands:
     - pip check
-    - rm tests/test_pep518.py
-    - pytest tests -vv -k "not test_contents_unstaged"
+    # PEP 518 tests fail with conda because the pyproject.toml and setup.py files are not available in the test environment
+    - pytest tests -vv -k "not test_pep518"
   source_files:
     - tests/
     - docs/
