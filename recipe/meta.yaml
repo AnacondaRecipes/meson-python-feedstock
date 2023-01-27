@@ -17,6 +17,7 @@ build:
 requirements:
   host:
     - meson 0.64.1
+    - ninja
     - pyproject-metadata 0.6.1
     - pip
     - wheel
@@ -26,6 +27,7 @@ requirements:
   run:
     - colorama # [win]
     - meson >=0.63.3
+    - ninja
     - pyproject-metadata >=0.6.1
     - python
     - tomli >=1.0.0
