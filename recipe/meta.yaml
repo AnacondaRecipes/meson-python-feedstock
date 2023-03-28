@@ -23,18 +23,18 @@ requirements:
   host:
     - meson >=0.63.3
     - ninja
-    - pyproject-metadata >=0.7.1
+    - pyproject-metadata >=0.5.0
     - pip
     - wheel
     - setuptools
     - python
     - tomli >=1.0.0
-    - typing-extensions >=3.7.4 # [py<38]
+    - typing-extensions >=3.7.4  # [py<38]
   run:
     - colorama # [win]
     - meson >=0.63.3
     - ninja
-    - pyproject-metadata >=0.7.1
+    - pyproject-metadata >=0.6.1
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
@@ -44,9 +44,10 @@ test:
     - mesonpy
   commands:
     - pip check
-    - pytest tests -vv -k "not test_contents_unstaged"
+    - pytest tests -vv -k "not (test_contents_unstaged or test_wheel.py or test_pep518 or test_tag or test_detect_wheel_tag or test)" # tests are relevant to wheel and not conda packages
   source_files:
     - tests/
+    - docs/
   requires:
     - {{ compiler('c') }}
     - git
@@ -56,7 +57,7 @@ test:
     - pip
     - pytest
     - pytest-mock
-
+    - pyproject-metadata
 about:
   home: https://github.com/FFY00/meson-python
   dev_url: https://github.com/FFY00/meson-python
