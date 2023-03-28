@@ -1,4 +1,4 @@
-{% set version = "0.7.0" %}
+{% set version = "0.12.1" %}
 {% set name = "meson-python" %}
 
 package:
@@ -7,37 +7,37 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 9fcfa350f44ca80dd4f5f9c3d251725434acf9a07d9618f382e6cc4629dcbe84
+  sha256: 3d5b3e581d70a58a97b9c116a75e97a76cc4b4c7e75fa0658fc8392371e2f2c2
   patches:
-    - patches/0001-fix-overdependency-on-ninja.patch
+    # - patches/0001-fix-overdependency-on-ninja.patch
 
 build:
   skip: True # [py<37]
   script: {{ PYTHON }} -m pip install . -vv --no-deps
-  number: 1
+  number: 0
 
 requirements:
   build:
     - patch     # [not win]
     - m2-patch  # [win]
   host:
-    - meson >=0.62.0
+    - meson >=0.63.3
     - ninja
-    - pyproject-metadata >=0.5.0
+    - pyproject-metadata >=0.7.1
     - pip
     - wheel
+    - setuptools
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
   run:
     - colorama # [win]
-    - meson >=0.60.0
+    - meson >=0.63.3
     - ninja
-    - pyproject-metadata >=0.5.0
+    - pyproject-metadata >=0.7.1
     - python
     - tomli >=1.0.0
     - typing-extensions >=3.7.4 # [py<38]
-    - wheel >=0.36.0
 
 test:
   imports:
