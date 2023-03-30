@@ -8,8 +8,6 @@ package:
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
   sha256: 3d5b3e581d70a58a97b9c116a75e97a76cc4b4c7e75fa0658fc8392371e2f2c2
-  patches:
-    # - patches/0001-fix-overdependency-on-ninja.patch
 
 build:
   skip: True # [py<37]
