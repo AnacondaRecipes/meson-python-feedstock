@@ -21,12 +21,12 @@ requirements:
   host:
     - meson >=0.63.3
     - ninja
-    - pyproject-metadata >=0.5.0
     - pip
     - wheel
     - setuptools
     - python
-    - tomli >=1.0.0
+    - pyproject-metadata >=0.6.1
+    - tomli >=1.0.0  # [py<311]
     - typing-extensions >=3.7.4  # [py<310]
   run:
     - colorama # [win]
