@@ -17,17 +17,15 @@ build:
 requirements:
   host:
     - meson 1.0.1
-    - ninja-base 1.10.2
     - pip
     - pyproject-metadata 0.7.1
     - python
     - setuptools
     - tomli 1.2.2  # [py<311]
-    - wheel
+    # mesonpy takes care of creating the wheels without using wheel. See https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
     - colorama # [win]
     - meson >=0.63.3
-    - ninja-base
     - pyproject-metadata >=0.7.1
     - python
     # about setuptools see https://github.com/mesonbuild/meson-python/pull/308
