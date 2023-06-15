@@ -75,3 +75,4 @@ extra:
   skip-lints:
     - python_build_tool_in_run
     - build_tools_must_be_in_build
+    - missing_wheel
