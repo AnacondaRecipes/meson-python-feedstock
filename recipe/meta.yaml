@@ -1,4 +1,4 @@
-{% set version = "0.13.1" %}
+{% set version = "0.15.0" %}
 {% set name = "meson-python" %}
 
 package:
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 63b3170001425c42fa4cfedadb9051cbd28925ff8eed7c40d36ba0099e3c7618
+  sha256: fddb73eecd49e89c1c41c87937cd89c2d0b65a1c63ba28238681d4bd9484d26f
 
 build:
   skip: True # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation 
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
