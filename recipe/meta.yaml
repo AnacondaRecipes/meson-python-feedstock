@@ -43,7 +43,7 @@ test:
   requires:
     - {{ compiler('c') }}
     # cython required for Python 3.12 support, see https://github.com/mesonbuild/meson-python/commit/936eee3fddfda34cbbb690acec8a170d089c1770
-    - cython >=0.29.34
+    - cython >=3.0.3
     - git
     - gitpython
     - patchelf   # [linux]
