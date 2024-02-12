@@ -56,6 +56,8 @@ test:
   commands:
     - pip check
     - pytest tests -vv -k "not (test_contents_unstaged or test_wheel.py or test_pep518 or test_tag or test_detect_wheel_tag or test_spam)" # tests are relevant to wheel and not conda packages
+    # CPPFLAGS exports -DNDEBUG which is unwanted
+    - export CPPFLAGS=${CPPFLAGS//-DNDEBUG/}
 
 about:
   home: https://github.com/mesonbuild/meson-python
