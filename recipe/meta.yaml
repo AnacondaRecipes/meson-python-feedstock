@@ -25,6 +25,7 @@ requirements:
     # mesonpy takes care of creating the wheels without using wheel. See https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
     - colorama # [win]
+    # Tests fail when using meson >1.2 on Python 3.8 which could affect other packages.
     - meson 1.2  # [py<=38]
     - meson >=0.63.3 # [py<312]
     - meson >=1.2.3 # [py>=312]
