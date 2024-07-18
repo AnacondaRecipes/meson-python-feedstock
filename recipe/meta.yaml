@@ -26,7 +26,6 @@ requirements:
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
-    - colorama          # [win]
     # Tests fail when using meson >1.2 on Python 3.8 which could
     # affect other packages.  True on osx-arm64 at least.
     - meson 1.2         # [py<=38]
