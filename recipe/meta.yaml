@@ -49,11 +49,15 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx and x86_64]
 
 # The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
-{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx and x86_64]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx and x86_64]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx and x86_64]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}              # [osx and x86_64]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx and x86_64]
+# (or _arm64 on the builders -- it works locally)
+{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}              # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx]
+
+# Gets a SIGKILL on the builders
+{% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
 
 test:
   imports:
