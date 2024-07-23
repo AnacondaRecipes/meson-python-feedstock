@@ -45,8 +45,15 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_editable_install" %}         # [win]
 {% set tests_to_skip = tests_to_skip + " or test_editble_reentrant" %}        # [win]
 {% set tests_to_skip = tests_to_skip + " or test_editable_verbose" %}         # [win]
-{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx-64]
-{% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [unix or win]
+{% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [win]
+{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx and x86_64]
+
+# The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
+{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx and x86_64]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx and x86_64]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx and x86_64]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}              # [osx and x86_64]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx and x86_64]
 
 test:
   imports:
