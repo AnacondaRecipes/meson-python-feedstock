@@ -57,6 +57,7 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx]
 
 # Gets a SIGKILL on the builders
+{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar" %}         # [osx and x86_64]
 {% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
 
 test:
