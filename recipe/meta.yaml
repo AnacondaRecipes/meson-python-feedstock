@@ -16,27 +16,25 @@ build:
 
 requirements:
   host:
-    - meson 1.0.1
+    - meson >=0.63.3    # [py<312]
+    - meson >=1.2.3     # [py>=312]
     - pip
-    - pyproject-metadata 0.7.1
+    - pyproject-metadata
     - python
     - setuptools
-    - tomli 1.2.2       # [py<311]
+    - tomli             # [py<311]
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
-    # Tests fail when using meson >1.2 on Python 3.8 which could
-    # affect other packages.  True on osx-arm64 at least.
+    # meson >1.2 on py38 (on at least osx-arm64) will generate a SEGV
+    # during tests.  Verified on 0.16.0.
     - meson 1.2         # [py<=38]
     - meson >=0.63.3    # [py<312]
     - meson >=1.2.3     # [py>=312]
     - packaging >=19.0
     - pyproject-metadata >=0.7.1
     - python
-    # about setuptools see
-    # https://github.com/mesonbuild/meson-python/pull/308
-    - setuptools >=60.0 # [py>=312]
     - tomli >=1.0.0     # [py<311]
 
 {% set tests_to_skip = "" %}
