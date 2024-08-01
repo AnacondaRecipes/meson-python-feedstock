@@ -1,0 +1,12 @@
+diff --git a/tests/packages/complex/test.pyx b/tests/packages/complex/test.pyx
+index eb54563..16b8c12 100644
+--- a/tests/packages/complex/test.pyx
++++ b/tests/packages/complex/test.pyx
+@@ -1,6 +1,7 @@
+ # SPDX-FileCopyrightText: 2023 The meson-python developers
+ #
+ # SPDX-License-Identifier: MIT
++# cython: freethreading_compatible=True
+ 
+ def answer():
+     return 42
