@@ -6,8 +6,8 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 9068c17e36c89d6c7ff709fffb2a8a9925e8cd0b02629728e5ceaf2ec505cb5f
+  url: https://github.com/mesonbuild/meson-python/archive/d93d4de2d56bacf6fd32f3ee3f18494ea38d05f0.zip
+  sha256: 7733750951fd0d46d01a336dfc2da95a7143e3b17937e023dd858ad2baea572a
 
 build:
   skip: True # [py<37]
@@ -57,6 +57,9 @@ requirements:
 # Gets a SIGKILL on the builders
 {% set tests_to_skip = tests_to_skip + " or test_archflags_envvar" %}         # [osx and x86_64]
 {% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
+
+# Fails when not running in a git checkout
+{% set tests_to_skip = tests_to_skip + " or test_reproducible" %}
 
 test:
   imports:
