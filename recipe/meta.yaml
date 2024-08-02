@@ -32,7 +32,7 @@ requirements:
     - meson 1.2         # [py<=38]
     - meson >=0.63.3    # [py<312]
     - meson >=1.2.3     # [py>=312]
-    - packaging >=19.0
+    - packaging >=21.4
     - pyproject-metadata >=0.7.1
     - python
     - tomli >=1.0.0     # [py<311]
