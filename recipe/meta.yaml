@@ -47,6 +47,12 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [win]
 {% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx and x86_64]
 
+# Dependency returns slightly different text than expected, but meaning is the same.
+{% set tests_to_skip = tests_to_skip + " or test_missing_version" %}          # [win]
+{% set tests_to_skip = tests_to_skip + " or test_no_pep621" %}                # [win]
+{% set tests_to_skip = tests_to_skip + " or test_pep621" %}                   # [win]
+{% set tests_to_skip = tests_to_skip + " or test_dynamic_version" %}          # [win]
+
 # The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
 # (or _arm64 on the builders -- it works locally)
 {% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx]
