@@ -1,4 +1,4 @@
-{% set version = "0.16.0" %}
+{% set version = "0.17.1" %}
 {% set name = "meson-python" %}
 
 package:
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: 9068c17e36c89d6c7ff709fffb2a8a9925e8cd0b02629728e5ceaf2ec505cb5f
+  sha256: efb91f69f2e19eef7bc9a471ed2a4e730088cc6b39eacaf3e49fc4f930eb5f83
 
 build:
   skip: True # [py<37]
@@ -19,10 +19,11 @@ requirements:
     - meson >=0.63.3    # [py<312]
     - meson >=1.2.3     # [py>=312]
     - pip
-    - pyproject-metadata
+    - pyproject-metadata >=0.7.1
     - python
     - setuptools
-    - tomli             # [py<311]
+    - tomli >=1.0.0     # [py<311]
+    - packaging >=19.0
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
@@ -78,7 +79,7 @@ test:
     - pytest
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
-    - typing-extensions >=3.7.4  # [py<310]
+    - typing-extensions >=3.7.4  # [py<311]
   commands:
     - pip check
     # CPPFLAGS exports -DNDEBUG which is unwanted
