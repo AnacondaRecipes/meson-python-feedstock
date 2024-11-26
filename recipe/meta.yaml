@@ -16,9 +16,9 @@ build:
 
 requirements:
   host:
-    - meson 1.0.1
+    - meson >=0.63.3
     - pip
-    - pyproject-metadata 0.7.1
+    - pyproject-metadata >=0.7.1
     - python
     - setuptools
     - tomli 1.2.2  # [py<311]
