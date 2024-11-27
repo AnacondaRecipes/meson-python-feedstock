@@ -21,7 +21,7 @@ requirements:
     - pyproject-metadata >=0.7.1
     - python
     - setuptools
-    - tomli 1.2.2  # [py<311]
+    - tomli >=1.0.0  # [py<311]
     # mesonpy takes care of creating the wheels without using wheel. See https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
     - colorama # [win]
@@ -30,7 +30,7 @@ requirements:
     - python
     # about setuptools see https://github.com/mesonbuild/meson-python/pull/308
     - setuptools >=60.0  # [py>=312]
-    - tomli >=1.0.0
+    - tomli >=1.0.0  # [py<311]
 
 test:
   imports:
