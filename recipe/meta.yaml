@@ -1,69 +1,83 @@
-{% set version = "0.17.1" %}
+{% set version = "0.18.0" %}
 {% set name = "meson-python" %}
+{% set tests_to_skip = "" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: efb91f69f2e19eef7bc9a471ed2a4e730088cc6b39eacaf3e49fc4f930eb5f83
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
+  sha256: c56a99ec9df669a40662fe46960321af6e4b14106c14db228709c1628e23848d
 
 build:
-  skip: True # [py<37]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   host:
-    - meson >=0.63.3    # [py<312]
-    - meson >=1.2.3     # [py>=312]
+    - meson >=1.2.3  # [py>=312]
+    - meson >=1.2.3  # [py>=312]
     - pip
-    - pyproject-metadata >=0.7.1
+    - pyproject-metadata >=0.9.0
     - python
     - setuptools
-    - tomli >=1.0.0     # [py<311]
-    - packaging >=19.0
+    - tomli >=1.0.0  # [py<311]
+    - packaging >=23.2
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
     # meson >1.2 on py38 (on at least osx-arm64) will generate a SEGV
     # during tests.  Verified on 0.16.0.
-    - meson 1.2         # [py<=38]
-    - meson >=0.63.3    # [py<312]
-    - meson >=1.2.3     # [py>=312]
-    - packaging >=19.0
-    - pyproject-metadata >=0.7.1
+    - meson >=1.2.3  # [py>=312]
+    - meson >=0.63.3  # [py<312]
+    - meson >=1.2.3  # [py>=312]
+    - packaging >=23.2
+    - pyproject-metadata >=0.9.0
     - python
-    - tomli >=1.0.0     # [py<311]
+    - tomli >=1.0.0  # [py<311]
 
-{% set tests_to_skip = "" %}
-{% set tests_to_skip = tests_to_skip + "test_tags.py" %}                      # [unix or win]
-{% set tests_to_skip = tests_to_skip + " or test_wheel.py" %}                 # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editable_install" %}         # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editble_reentrant" %}        # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editable_verbose" %}         # [win]
-{% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [win]
-{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx and x86_64]
+- "{% set tests_to_skip = tests_to_skip + \"test_tags.py\" %}                      # [unix or win]"  # [unix or win]"  # [unix or win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_wheel.py\" %}                 # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_editable_install\" %}         # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_editble_reentrant\" %}        # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_editable_verbose\" %}         # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_spam\" %}                     # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_archflags_envvar_parsing\" %} # [osx and x86_64]"  # [osx and x86_64]"  # [osx and x86_64]
 
 # Dependency returns slightly different text than expected, but meaning is the same.
-{% set tests_to_skip = tests_to_skip + " or test_missing_version" %}          # [win]
-{% set tests_to_skip = tests_to_skip + " or test_no_pep621" %}                # [win]
-{% set tests_to_skip = tests_to_skip + " or test_pep621" %}                   # [win]
-{% set tests_to_skip = tests_to_skip + " or test_dynamic_version" %}          # [win]
+- "{% set tests_to_skip = tests_to_skip + \" or test_missing_version\" %}          # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_no_pep621\" %}                # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_pep621\" %}                   # [win]"  # [win]"  # [win]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_dynamic_version\" %}          # [win]"  # [win]"  # [win]
 
 # The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
 # (or _arm64 on the builders -- it works locally)
-{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}              # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx]
+- "{% set tests_to_skip = tests_to_skip + \" or test_scipy_like\" %}               # [osx]"  # [osx]"  # [osx]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_detect_wheel_tag_module\" %}  # [osx]"  # [osx]"  # [osx]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_detect_wheel_tag_script\" %}  # [osx]"  # [osx]"  # [osx]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_limited_api\" %}              # [osx]"  # [osx]"  # [osx]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_limited_api_disabled\" %}     # [osx]"  # [osx]"  # [osx]
 
 # Gets a SIGKILL on the builders
-{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar" %}         # [osx and x86_64]
-{% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
+- "{% set tests_to_skip = tests_to_skip + \" or test_archflags_envvar\" %}         # [osx and x86_64]"  # [osx and x86_64]"  # [osx and x86_64]
+
+- "{% set tests_to_skip = tests_to_skip + \" or test_local_lib\" %}                # [osx and arm64]"  # [osx and arm64]"  # [osx and arm64]
 
 test:
   imports:
@@ -79,7 +93,7 @@ test:
     - cython >=3.0.3
     - git
     - gitpython
-    - patchelf   # [linux]
+    - patchelf  # [linux]
     - pkgconfig  # [linux]
     - pip
     - pytest
