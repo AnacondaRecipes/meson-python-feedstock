@@ -63,6 +63,9 @@ requirements:
 # Gets a SIGKILL on the builders
 {% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
 
+# DeprecationWarning: 'asyncio.iscoroutinefunction' is deprecated and slated for removal in Python 3.16; use inspect.iscoroutinefunction() instead
+{% set tests_to_skip = tests_to_skip + " or test_invalid_build_dir" %}
+
 test:
   imports:
     - mesonpy
@@ -84,6 +87,7 @@ test:
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
     - typing-extensions >=3.7.4  # [py<311]
+    - wheel
   commands:
     - pip check
     # CPPFLAGS exports -DNDEBUG which is unwanted
