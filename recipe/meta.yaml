@@ -18,7 +18,7 @@ requirements:
   host:
     - pip
     - python
-    - meson >=0.63.3    # [py<312]
+    - meson >=0.64.0    # [py<312]
     - meson >=1.2.3     # [py>=312]
     - packaging >=23.2
     - pyproject-metadata >=0.9.0
@@ -32,7 +32,7 @@ requirements:
     # meson >1.2 on py38 (on at least osx-arm64) will generate a SEGV
     # during tests.  Verified on 0.16.0.
     - meson 1.2         # [py<=38]
-    - meson >=0.63.3    # [py>38 or py<312]
+    - meson >=0.64.0    # [py>38 or py<312]
     - meson >=1.2.3     # [py>=312]
     - packaging >=23.2
     - pyproject-metadata >=0.9.0
