@@ -12,7 +12,7 @@ source:
 build:
   skip: True # [py<37]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+  number: 1
 
 requirements:
   host:
@@ -86,6 +86,7 @@ test:
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
     - typing-extensions >=3.7.4  # [py<311]
+    - wheel
   commands:
     - pip check
     # CPPFLAGS exports -DNDEBUG which is unwanted
