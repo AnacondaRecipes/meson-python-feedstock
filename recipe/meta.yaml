@@ -1,41 +1,41 @@
-{% set version = "0.17.1" %}
 {% set name = "meson-python" %}
+{% set version = "0.18.0" %}
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/meson_python-{{ version }}.tar.gz
-  sha256: efb91f69f2e19eef7bc9a471ed2a4e730088cc6b39eacaf3e49fc4f930eb5f83
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: c56a99ec9df669a40662fe46960321af6e4b14106c14db228709c1628e23848d
 
 build:
-  skip: True # [py<37]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 1
+  skip: True # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
-    - meson >=0.63.3    # [py<312]
-    - meson >=1.2.3     # [py>=312]
     - pip
-    - pyproject-metadata >=0.7.1
     - python
+    - meson >=0.64.0    # [py<312]
+    - meson >=1.2.3     # [py>=312]
+    - packaging >=23.2
+    - pyproject-metadata >=0.9.0
     - setuptools
     - tomli >=1.0.0     # [py<311]
-    - packaging >=19.0
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
   run:
+    - python
     # meson >1.2 on py38 (on at least osx-arm64) will generate a SEGV
     # during tests.  Verified on 0.16.0.
     - meson 1.2         # [py<=38]
-    - meson >=0.63.3    # [py<312]
+    - meson >=0.64.0    # [py>38 or py<312]
     - meson >=1.2.3     # [py>=312]
-    - packaging >=19.0
-    - pyproject-metadata >=0.7.1
-    - python
+    - packaging >=23.2
+    - pyproject-metadata >=0.9.0
     - tomli >=1.0.0     # [py<311]
 
 {% set tests_to_skip = "" %}
@@ -45,7 +45,6 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_editble_reentrant" %}        # [win]
 {% set tests_to_skip = tests_to_skip + " or test_editable_verbose" %}         # [win]
 {% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [win]
-{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar_parsing" %} # [osx and x86_64]
 
 # Dependency returns slightly different text than expected, but meaning is the same.
 {% set tests_to_skip = tests_to_skip + " or test_missing_version" %}          # [win]
@@ -62,7 +61,6 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx]
 
 # Gets a SIGKILL on the builders
-{% set tests_to_skip = tests_to_skip + " or test_archflags_envvar" %}         # [osx and x86_64]
 {% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
 
 test:
@@ -82,7 +80,7 @@ test:
     - patchelf   # [linux]
     - pkgconfig  # [linux]
     - pip
-    - pytest
+    - pytest >=6.0
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
     - typing-extensions >=3.7.4  # [py<311]
@@ -97,7 +95,7 @@ test:
 about:
   home: https://github.com/mesonbuild/meson-python
   dev_url: https://github.com/mesonbuild/meson-python
-  doc_url: https://mesonbuild.com/meson-python/
+  doc_url: https://mesonbuild.com/meson-python
   summary: Meson Python build backend (PEP 517)
   description: |
     Python build backend (PEP 517) for Meson projects.
