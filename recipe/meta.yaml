@@ -10,9 +10,9 @@ source:
   sha256: c56a99ec9df669a40662fe46960321af6e4b14106c14db228709c1628e23848d
 
 build:
-  number: 0
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  number: 1
   skip: True # [py<38]
+  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
@@ -84,6 +84,7 @@ test:
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
     - typing-extensions >=3.7.4  # [py<311]
+    - wheel
   commands:
     - pip check
     # CPPFLAGS exports -DNDEBUG which is unwanted
