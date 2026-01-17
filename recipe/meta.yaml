@@ -1,29 +1,46 @@
 {% set name = "meson-python" %}
-{% set version = "0.18.0" %}
+{% set version = "0.19.0" %}
+{% set tests_to_skip = "" %}
+{% set tests_to_skip = tests_to_skip + "test_tags.py" %}  # [unix or win]
+{% set tests_to_skip = tests_to_skip + " or test_wheel.py" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_editable_install" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_editble_reentrant" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_editable_verbose" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_spam" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_missing_version" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_no_pep621" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_pep621" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_dynamic_version" %}  # [win]
+{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}  # [osx]
+{% set tests_to_skip = tests_to_skip + " or test_local_lib" %}  # [osx and arm64]
 
 package:
   name: {{ name }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: c56a99ec9df669a40662fe46960321af6e4b14106c14db228709c1628e23848d
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
+  sha256: 9959d198aa69b57fcfd354a34518c6f795b781a73ed0656f4d01660160cc2553
 
 build:
-  number: 1
-  skip: True # [py<38]
+  number: 0
+  skip: true  # [py<39]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   host:
     - pip
     - python
-    - meson >=0.64.0    # [py<312]
-    - meson >=1.2.3     # [py>=312]
-    - packaging >=23.2
+    - meson >=1.2.3  # [py>=312]
+    - meson >=1.2.3  # [py>=312]
+    - packaging >=24.2  # [ios]
     - pyproject-metadata >=0.9.0
     - setuptools
-    - tomli >=1.0.0     # [py<311]
+    - tomli >=1.0.0  # [py<311]
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
@@ -31,38 +48,17 @@ requirements:
     - python
     # meson >1.2 on py38 (on at least osx-arm64) will generate a SEGV
     # during tests.  Verified on 0.16.0.
-    - meson 1.2         # [py<=38]
-    - meson >=0.64.0    # [py>38 or py<312]
-    - meson >=1.2.3     # [py>=312]
-    - packaging >=23.2
+    - meson >=1.2.3  # [py>=312]
+    - meson >=0.64.0  # [py>38 or py<312]
+    - meson >=1.2.3  # [py>=312]
+    - packaging >=24.2  # [ios]
     - pyproject-metadata >=0.9.0
-    - tomli >=1.0.0     # [py<311]
-
-{% set tests_to_skip = "" %}
-{% set tests_to_skip = tests_to_skip + "test_tags.py" %}                      # [unix or win]
-{% set tests_to_skip = tests_to_skip + " or test_wheel.py" %}                 # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editable_install" %}         # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editble_reentrant" %}        # [win]
-{% set tests_to_skip = tests_to_skip + " or test_editable_verbose" %}         # [win]
-{% set tests_to_skip = tests_to_skip + " or test_spam" %}                     # [win]
+    - tomli >=1.0.0  # [py<311]
 
 # Dependency returns slightly different text than expected, but meaning is the same.
-{% set tests_to_skip = tests_to_skip + " or test_missing_version" %}          # [win]
-{% set tests_to_skip = tests_to_skip + " or test_no_pep621" %}                # [win]
-{% set tests_to_skip = tests_to_skip + " or test_pep621" %}                   # [win]
-{% set tests_to_skip = tests_to_skip + " or test_dynamic_version" %}          # [win]
-
 # The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
 # (or _arm64 on the builders -- it works locally)
-{% set tests_to_skip = tests_to_skip + " or test_scipy_like" %}               # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_module" %}  # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_detect_wheel_tag_script" %}  # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api" %}              # [osx]
-{% set tests_to_skip = tests_to_skip + " or test_limited_api_disabled" %}     # [osx]
-
 # Gets a SIGKILL on the builders
-{% set tests_to_skip = tests_to_skip + " or test_local_lib" %}                # [osx and arm64]
-
 test:
   imports:
     - mesonpy
@@ -77,7 +73,7 @@ test:
     - cython >=3.0.3
     - git
     - gitpython
-    - patchelf   # [linux]
+    - patchelf  # [linux]
     - pkgconfig  # [linux]
     - pip
     - pytest >=6.0
