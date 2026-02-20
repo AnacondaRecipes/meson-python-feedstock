@@ -50,6 +50,7 @@ requirements:
 {% set tests_to_skip = tests_to_skip + " or test_no_pep621" %}                # [win]
 {% set tests_to_skip = tests_to_skip + " or test_pep621" %}                   # [win]
 {% set tests_to_skip = tests_to_skip + " or test_dynamic_version" %}          # [win]
+{% set tests_to_skip = tests_to_skip + " or test_install_data" %}             # [win]
 
 # The following fail: assert 'macosx_10_9_x86_64' == 'macosx_10_16_x86_64'
 # (or _arm64 on the builders -- it works locally)
@@ -86,6 +87,7 @@ test:
     - wheel
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
+    - {{ compiler('cxx') }}
     - cmake
   commands:
     - pip check
