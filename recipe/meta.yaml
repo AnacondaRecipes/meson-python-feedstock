@@ -90,6 +90,7 @@ test:
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - ninja-base >=1.8.2
     - cmake
   commands:
     - pip check
