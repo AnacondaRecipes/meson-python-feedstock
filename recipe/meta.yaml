@@ -28,6 +28,8 @@ requirements:
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
     - setuptools
+    # meson-python: error: Could not find ninja version 1.8.2 or newer.
+    - ninja-build >=1.8.2
   run:
     - python
     - meson >=0.64.0  # [py<312]
