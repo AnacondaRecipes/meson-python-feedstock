@@ -9,8 +9,10 @@ upload_channels:
 
 channels:
   - ad-testing/label/py315
-  # meson py315 not yet on the testing label; strip this URL before merge (U12)
+  # py315 bootstrap hosts are on PR staging until review-gated promotion.
+  # Strip both staging URLs before merge (U12).
   - https://staging.continuum.io/pbp/fs/meson-feedstock/pr25/9e3735b
+  - https://staging.continuum.io/pbp/fs/pyproject-metadata-feedstock/pr7/7d1ebdb
 
 build_env_vars:
   ANACONDA_ROCKET_ENABLE_PY315: True
