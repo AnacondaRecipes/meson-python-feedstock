@@ -9,6 +9,8 @@ upload_channels:
 
 channels:
   - ad-testing/label/py315
+  # meson py315 not yet on the testing label; strip this URL before merge (U12)
+  - https://staging.continuum.io/pbp/fs/meson-feedstock/pr25/9e3735b
 
 build_env_vars:
   ANACONDA_ROCKET_ENABLE_PY315: True
