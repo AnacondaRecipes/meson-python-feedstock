@@ -79,6 +79,9 @@ test:
     - cython >=3.0.3
     - git
     - gitpython
+    # tests/test_options.py runs `ninja --version` at import time;
+    # only pulled in transitively by meson on some platforms
+    - ninja-base
     - patchelf   # [linux]
     - pkgconfig  # [linux]
     - pip
