@@ -10,7 +10,7 @@ source:
   sha256: c56a99ec9df669a40662fe46960321af6e4b14106c14db228709c1628e23848d
 
 build:
-  number: 0
+  number: 1
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   skip: True # [py<38]
 
@@ -24,6 +24,8 @@ requirements:
     - pyproject-metadata >=0.9.0
     - setuptools
     - tomli >=1.0.0     # [py<311]
+    # meson-python: error: Could not find ninja version 1.8.2 or newer.
+    - ninja-base
     # mesonpy takes care of creating the wheels without using
     # wheel. See
     # https://github.com/mesonbuild/meson-python/blob/main/mesonpy/_wheelfile.py
