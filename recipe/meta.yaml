@@ -82,6 +82,7 @@ test:
     - patchelf   # [linux]
     - pkgconfig  # [linux]
     - pip
+    - wheel
     - pytest >=6.0
     - pytest-mock
     # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
