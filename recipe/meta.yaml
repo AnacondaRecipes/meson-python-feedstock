@@ -1,5 +1,5 @@
 {% set name = "meson-python" %}
-{% set version = "0.20.0" %}
+{% set version = "0.22.1" %}
 
 package:
   name: {{ name }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name.replace('-', '_')}}-{{ version }}.tar.gz
-  sha256: 6d9726ae6cd37e22f210c74b364b30180a68c20442e97ff09f3c566a414af738
+  sha256: 52c88628b0e5671592dc2306613fb5f6f3615fd24def059b9894f143b7f9a139
 
 build:
   number: 0
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  skip: true # [py<39]
+  skip: true  # [py<310]
 
 requirements:
   host:
@@ -84,8 +84,6 @@ test:
     - pip
     - pytest >=6.0
     - pytest-mock
-    # see https://github.com/mesonbuild/meson-python/commit/424f2f97e00c5281437355acd1232d29431dcf23
-    - typing-extensions >=3.7.4  # [py<311]
     - wheel
     - {{ stdlib('c') }}
     - {{ compiler('c') }}
